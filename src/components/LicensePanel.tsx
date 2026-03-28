@@ -38,9 +38,11 @@ export default function LicensePanel({ license, onLicenseChange }: Props) {
         onLicenseChange(result)
         setKey('')
       } else if (result.status === 'invalid') {
-        setError('Invalid license key. Please check and try again.')
-      } else if (result.status === 'expired') {
-        setError('This license key has expired.')
+        if (result.tier === 'standard') {
+          setError('This Standard licence is not valid for this version. Upgrade to a Lifetime licence at purchase.openclawarcade.org.')
+        } else {
+          setError('Invalid licence key. Please check and try again.')
+        }
       }
     } finally {
       setActivating(false)
@@ -112,13 +114,26 @@ export default function LicensePanel({ license, onLicenseChange }: Props) {
             marginBottom: 16,
           }}>
             <span style={{ fontSize: 20 }}>✓</span>
-            <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--success)' }}>
-                Premium License Active
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--success)' }}>
+                  Premium Active
+                </span>
+                <span style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  padding: '2px 8px',
+                  borderRadius: 4,
+                  background: license.tier === 'lifetime' ? 'rgba(139,92,246,0.2)' : 'rgba(99,102,241,0.2)',
+                  color: license.tier === 'lifetime' ? '#a78bfa' : '#818cf8',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                }}>
+                  {license.tier === 'lifetime' ? '⚡ Lifetime' : '★ Standard v2.x'}
+                </span>
               </div>
-              <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
                 Key: {license.key.substring(0, 9)}...{license.key.substring(license.key.length - 4)}
-                {license.expiresAt && ` | Expires: ${new Date(license.expiresAt).toLocaleDateString()}`}
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![ClawBench](https://img.shields.io/badge/ClawBench-v2.0.1-4f46e5?style=for-the-badge)
+![ClawBench](https://img.shields.io/badge/ClawBench-v2.0.2-4f46e5?style=for-the-badge)
 ![Hark-Tech](https://img.shields.io/badge/by-Hark--Tech-0f172a?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-334155?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
@@ -138,10 +138,19 @@ Premium features are unlocked with a **ClawBench licence key** (format: `LLMB-XX
 
 ### Purchase Instantly Online
 
-> **[purchase.openclawarcade.org](https://purchase.openclawarcade.org)** — £10 one-time payment
+> **[purchase.openclawarcade.org](https://purchase.openclawarcade.org)**
+
+Two licence tiers are available — both are one-time payments with no subscription:
+
+| | **Standard — £10** | **Lifetime — £25** |
+|---|---|---|
+| All Premium features | ✓ | ✓ |
+| All v2.x updates | ✓ | ✓ |
+| Future major versions | ✗ | ✓ |
+| Key format | `LLMB-XXXX-XXXX-XXXX-XXXX` | `LLML-XXXX-XXXX-XXXX-XXXX` |
 
 1. Visit **[purchase.openclawarcade.org](https://purchase.openclawarcade.org)**
-2. Click **Buy Now** and complete the secure Stripe checkout
+2. Choose Standard or Lifetime and complete the secure Stripe checkout
 3. Your licence key is displayed immediately on screen
 4. A copy is also **emailed to you automatically** — check your inbox
 
@@ -150,19 +159,18 @@ The whole process takes under a minute. No account required.
 ### Activating Your Licence
 1. Open ClawBench
 2. Go to **Settings**
-3. In the **Licence** section, enter your key (format: `LLMB-XXXX-XXXX-XXXX-XXXX`)
-4. Click **Activate**
-5. Premium features unlock immediately — no restart required
+3. In the **Licence** section, enter your key
+4. Click **Activate** — Premium unlocks immediately, no restart required
 
 ### Licence Terms
 - One-time payment — no subscription, no renewal fees
-- One licence key is valid for **one machine** at a time
-- You may deactivate and reactivate your key to move between machines
-- Licences do not expire
+- **Standard**: covers all v2.x releases. A discounted upgrade will be offered when v3 launches
+- **Lifetime**: covers all current and future major versions, forever
+- Licences are stored locally — they persist across app updates automatically
 - Business/multi-seat licences available — contact [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
 
 ### Lost Your Key?
-Your key is tied to your Stripe payment session. If you've lost it, email [hello@openclawarcade.org](mailto:hello@openclawarcade.org) with your payment confirmation and we'll resend it.
+Your key is tied to your Stripe payment. If you've lost it, email [hello@openclawarcade.org](mailto:hello@openclawarcade.org) with your payment confirmation and we'll resend it.
 
 ---
 

@@ -1,13 +1,21 @@
-import crypto from 'crypto'
 import { getSettings, saveSettings } from './settings'
 
-interface LicenseInfo {
-  status: 'none' | 'active' | 'expired' | 'invalid'
+// ── Types ─────────────────────────────────────────────────────────────────────
+export type LicenseTier = 'standard' | 'lifetime'
+
+export interface LicenseInfo {
+  status: 'none' | 'active' | 'invalid'
   key: string
   expiresAt: string | null
   features: string[]
   isPremium: boolean
+  tier: LicenseTier | null
 }
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+// Standard licences cover this major version only.
+// Bump this when releasing a new major version.
+const APP_MAJOR_VERSION = 2
 
 const PREMIUM_FEATURES = [
   'hardware-detection',
@@ -19,138 +27,99 @@ const PREMIUM_FEATURES = [
   'export-reports',
 ]
 
-// License key format: LLMB-XXXX-XXXX-XXXX-XXXX
-// Validation uses a simple checksum algorithm
-// In production, you'd want server-side validation
+// ── djb2 hash — must match keygen.js on the purchase server exactly ───────────
+function djb2(str: string): number {
+  let hash = 5381
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) ^ str.charCodeAt(i)
+    hash = hash >>> 0
+  }
+  return hash
+}
 
-const LICENSE_SECRET = 'llm-bench-v1-2024'
+function generateSegment(seed: string): string {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  let result = ''
+  let h = djb2(seed)
+  for (let i = 0; i < 4; i++) {
+    result += chars[h % chars.length]
+    h = djb2(result + seed + i)
+  }
+  return result
+}
 
+// ── Key format ────────────────────────────────────────────────────────────────
+// Standard:  LLMB-XXXX-XXXX-XXXX-XXXX  (v2.x only)
+// Lifetime:  LLML-XXXX-XXXX-XXXX-XXXX  (all future versions)
+
+function detectTier(key: string): LicenseTier | null {
+  if (/^LLMB-[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(key)) return 'standard'
+  if (/^LLML-[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(key)) return 'lifetime'
+  return null
+}
+
+function isValidChecksum(key: string, tier: LicenseTier): boolean {
+  const parts = key.split('-')
+  if (parts.length !== 5) return false
+  const [, s1, s2, s3, checksum] = parts
+  const salt = tier === 'lifetime' ? 'CLAWBENCH-LIFETIME' : 'CLAWBENCH'
+  return checksum === generateSegment(s1 + s2 + s3 + salt)
+}
+
+function isVersionCompatible(tier: LicenseTier): boolean {
+  if (tier === 'lifetime') return true
+  return APP_MAJOR_VERSION === 2
+}
+
+// ── Public API ─────────────────────────────────────────────────────────────────
 export function activateLicense(key: string): LicenseInfo {
   const normalized = key.trim().toUpperCase()
 
-  if (!isValidFormat(normalized)) {
-    return { status: 'invalid', key: normalized, expiresAt: null, features: [], isPremium: false }
+  const tier = detectTier(normalized)
+  if (!tier) {
+    return { status: 'invalid', key: normalized, expiresAt: null, features: [], isPremium: false, tier: null }
   }
 
-  if (!isValidChecksum(normalized)) {
-    return { status: 'invalid', key: normalized, expiresAt: null, features: [], isPremium: false }
+  if (!isValidChecksum(normalized, tier)) {
+    return { status: 'invalid', key: normalized, expiresAt: null, features: [], isPremium: false, tier: null }
   }
 
-  // Extract expiration from key (embedded in the last segment)
-  const expiresAt = extractExpiration(normalized)
-  if (expiresAt && new Date(expiresAt) < new Date()) {
-    const settings = getSettings()
-    settings.licenseKey = normalized
-    settings.licenseStatus = 'expired'
-    saveSettings(settings)
-    return { status: 'expired', key: normalized, expiresAt, features: [], isPremium: false }
+  if (!isVersionCompatible(tier)) {
+    return { status: 'invalid', key: normalized, expiresAt: null, features: [], isPremium: false, tier: null }
   }
 
-  // Valid license
   const settings = getSettings()
   settings.licenseKey = normalized
   settings.licenseStatus = 'active'
+  settings.licenseTier = tier
   saveSettings(settings)
 
-  return {
-    status: 'active',
-    key: normalized,
-    expiresAt,
-    features: PREMIUM_FEATURES,
-    isPremium: true,
-  }
+  return { status: 'active', key: normalized, expiresAt: null, features: PREMIUM_FEATURES, isPremium: true, tier }
 }
 
 export function getLicenseInfo(): LicenseInfo {
   const settings = getSettings()
 
   if (!settings.licenseKey || settings.licenseStatus === 'none') {
-    return { status: 'none', key: '', expiresAt: null, features: [], isPremium: false }
+    return { status: 'none', key: '', expiresAt: null, features: [], isPremium: false, tier: null }
   }
 
-  if (settings.licenseStatus === 'active') {
-    const expiresAt = extractExpiration(settings.licenseKey)
-    if (expiresAt && new Date(expiresAt) < new Date()) {
-      settings.licenseStatus = 'expired'
-      saveSettings(settings)
-      return { status: 'expired', key: settings.licenseKey, expiresAt, features: [], isPremium: false }
+  const tier: LicenseTier | null = (settings.licenseTier as LicenseTier) || detectTier(settings.licenseKey)
+
+  if (settings.licenseStatus === 'active' && tier) {
+    if (!isVersionCompatible(tier)) {
+      return { status: 'invalid', key: settings.licenseKey, expiresAt: null, features: [], isPremium: false, tier }
     }
-
-    return {
-      status: 'active',
-      key: settings.licenseKey,
-      expiresAt,
-      features: PREMIUM_FEATURES,
-      isPremium: true,
-    }
+    return { status: 'active', key: settings.licenseKey, expiresAt: null, features: PREMIUM_FEATURES, isPremium: true, tier }
   }
 
-  return {
-    status: settings.licenseStatus as any,
-    key: settings.licenseKey,
-    expiresAt: null,
-    features: [],
-    isPremium: false,
-  }
+  return { status: 'none', key: '', expiresAt: null, features: [], isPremium: false, tier: null }
 }
 
 export function deactivateLicense(): void {
   const settings = getSettings()
   settings.licenseKey = ''
   settings.licenseStatus = 'none'
+  settings.licenseTier = ''
   saveSettings(settings)
-}
-
-// Generate a license key (for your admin/sales tool)
-export function generateLicenseKey(expirationYear: number = 2030): string {
-  const seg1 = 'LLMB'
-  const seg2 = randomHex(4)
-  const seg3 = randomHex(4)
-  // Encode expiration year in segment 4
-  const seg4 = expirationYear.toString(16).toUpperCase().padStart(4, '0')
-
-  const raw = `${seg1}-${seg2}-${seg3}-${seg4}`
-  // Generate checksum segment
-  const checksum = computeChecksum(raw)
-  return `${raw}-${checksum}`
-}
-
-function isValidFormat(key: string): boolean {
-  return /^LLMB-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(key)
-}
-
-function isValidChecksum(key: string): boolean {
-  const parts = key.split('-')
-  if (parts.length !== 5) return false
-  const rawPart = parts.slice(0, 4).join('-')
-  const expectedChecksum = computeChecksum(rawPart)
-  return parts[4] === expectedChecksum
-}
-
-function computeChecksum(raw: string): string {
-  // Simple deterministic hash - matches the keygen app algorithm
-  let hash = 0
-  const str = raw + LICENSE_SECRET
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i)
-    hash = ((hash << 5) - hash) + char
-    hash = hash & hash
-  }
-  return Math.abs(hash).toString(16).toUpperCase().padStart(8, '0').substring(0, 4)
-}
-
-function extractExpiration(key: string): string | null {
-  const parts = key.split('-')
-  if (parts.length < 4) return null
-  const yearHex = parts[3]
-  const year = parseInt(yearHex, 16)
-  if (year < 2024 || year > 2100) return null
-  return `${year}-12-31T23:59:59Z`
-}
-
-function randomHex(length: number): string {
-  return crypto.randomBytes(length)
-    .toString('hex')
-    .toUpperCase()
-    .substring(0, length)
 }

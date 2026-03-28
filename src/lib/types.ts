@@ -184,7 +184,8 @@ export interface BuildProgress {
 
 // --- License ---
 
-export type LicenseStatus = 'none' | 'active' | 'expired' | 'invalid'
+export type LicenseStatus = 'none' | 'active' | 'invalid'
+export type LicenseTier = 'standard' | 'lifetime'
 
 export interface LicenseInfo {
   status: LicenseStatus
@@ -192,4 +193,5 @@ export interface LicenseInfo {
   expiresAt: string | null
   features: string[]
   isPremium: boolean
+  tier: LicenseTier | null
 }

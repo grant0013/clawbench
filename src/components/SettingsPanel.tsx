@@ -138,7 +138,7 @@ export default function SettingsPanel({ settings, onUpdate, onDetect, onReinstal
         borderRadius: 8,
         border: '1px solid var(--border)',
       }}>
-        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>ClawBench v2.0.1</div>
+        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>ClawBench v2.0.2</div>
         <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>
           by Hark-Tech
           {isPremium && <span style={{ color: 'var(--success)', marginLeft: 8 }}>Premium</span>}

@@ -10,6 +10,7 @@ interface AppSettings {
   modelsDirectory: string
   licenseKey: string
   licenseStatus: string
+  licenseTier: string
 }
 
 const defaultSettings: AppSettings = {
@@ -20,6 +21,7 @@ const defaultSettings: AppSettings = {
   modelsDirectory: '',
   licenseKey: '',
   licenseStatus: 'none',
+  licenseTier: '',
 }
 
 function getSettingsPath(): string {

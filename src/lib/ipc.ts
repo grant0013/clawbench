@@ -83,6 +83,7 @@ const mockLicense: LicenseInfo = {
   expiresAt: null,
   features: [],
   isPremium: false,
+  tier: null,
 }
 
 export const api: ElectronAPI = window.electronAPI ?? {
