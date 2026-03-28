@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![ClawBench](https://img.shields.io/badge/ClawBench-v2.0.0-4f46e5?style=for-the-badge)
+![ClawBench](https://img.shields.io/badge/ClawBench-v2.0.1-4f46e5?style=for-the-badge)
 ![Hark-Tech](https://img.shields.io/badge/by-Hark--Tech-0f172a?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-334155?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)

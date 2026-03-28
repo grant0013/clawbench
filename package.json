@@ -1,6 +1,6 @@
 {
   "name": "clawbench",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "ClawBench - AI Model Benchmarking by OpenClaw · Hark-Tech",
   "main": "dist-electron/main.js",
   "scripts": {
