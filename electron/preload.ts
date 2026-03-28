@@ -58,4 +58,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   activateLicense: (key: string) => ipcRenderer.invoke('activate-license', key),
   getLicenseInfo: () => ipcRenderer.invoke('get-license-info'),
   deactivateLicense: () => ipcRenderer.invoke('deactivate-license'),
+
+  // Utilities
+  openExternal: (url: string) => ipcRenderer.invoke('open-external', url),
 })

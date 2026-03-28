@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, BrowserWindow, ipcMain, dialog, shell } from 'electron'
 import path from 'path'
 import { pathToFileURL } from 'url'
 import { detectLlamaCpp } from './llamacpp/detector'
@@ -254,6 +254,7 @@ function registerIpcHandlers() {
   ipcMain.handle('activate-license', (_, key) => activateLicense(key))
   ipcMain.handle('get-license-info', () => getLicenseInfo())
   ipcMain.handle('deactivate-license', () => deactivateLicense())
+  ipcMain.handle('open-external', (_, url: string) => shell.openExternal(url))
 }
 
 function resultsToCsv(results: any[]): string {

@@ -66,9 +66,36 @@ export default function LicensePanel({ license, onLicenseChange }: Props) {
       borderRadius: 10,
       marginBottom: 28,
     }}>
-      <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 4 }}>License</h3>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+        <h3 style={{ fontSize: 16, fontWeight: 700 }}>License</h3>
+        {!license.isPremium && (
+          <button
+            onClick={() => api.openExternal('https://purchase.openclawarcade.org')}
+            style={{
+              padding: '6px 14px',
+              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              border: 'none',
+              borderRadius: 6,
+              color: 'white',
+              cursor: 'pointer',
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            ⚡ Buy Premium — £10
+          </button>
+        )}
+      </div>
       <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 16 }}>
-        Unlock all premium features with a license key.
+        Unlock all premium features with a licence key.{' '}
+        {!license.isPremium && (
+          <span
+            onClick={() => api.openExternal('https://purchase.openclawarcade.org')}
+            style={{ color: 'var(--accent)', cursor: 'pointer', textDecoration: 'underline' }}
+          >
+            Get yours at purchase.openclawarcade.org
+          </span>
+        )}
       </p>
 
       {license.isPremium ? (

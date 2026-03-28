@@ -45,6 +45,9 @@ interface ElectronAPI {
   activateLicense: (key: string) => Promise<LicenseInfo>
   getLicenseInfo: () => Promise<LicenseInfo>
   deactivateLicense: () => Promise<void>
+
+  // Utilities
+  openExternal: (url: string) => Promise<void>
 }
 
 declare global {
@@ -114,6 +117,7 @@ export const api: ElectronAPI = window.electronAPI ?? {
   activateLicense: async () => mockLicense,
   getLicenseInfo: async () => mockLicense,
   deactivateLicense: async () => {},
+  openExternal: async (url: string) => { window.open(url, '_blank') },
 }
 
 export { isDev }
