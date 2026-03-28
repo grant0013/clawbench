@@ -80,4 +80,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.on('update-downloaded', handler)
     return () => ipcRenderer.removeListener('update-downloaded', handler)
   },
+  onUpdateNotEntitled: (callback: (info: any) => void) => {
+    const handler = (_: any, info: any) => callback(info)
+    ipcRenderer.on('update-not-entitled', handler)
+    return () => ipcRenderer.removeListener('update-not-entitled', handler)
+  },
 })

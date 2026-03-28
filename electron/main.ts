@@ -264,17 +264,39 @@ function registerIpcHandlers() {
 }
 
 function setupAutoUpdater() {
-  autoUpdater.autoDownload = true
+  // We handle download manually so we can gate major-version upgrades by licence tier
+  autoUpdater.autoDownload = false
   autoUpdater.autoInstallOnAppQuit = true
 
   // Check for updates 5 seconds after launch (give the window time to load)
   setTimeout(() => autoUpdater.checkForUpdates(), 5000)
 
   autoUpdater.on('update-available', (info) => {
-    mainWindow?.webContents.send('update-available', {
-      version: info.version,
-      releaseNotes: info.releaseNotes,
-    })
+    const settings = getSettings()
+    const tier = (settings.licenseTier as string) || null
+
+    // Compare major versions
+    const currentMajor = parseInt(app.getVersion().split('.')[0], 10)
+    const updateMajor  = parseInt((info.version as string).split('.')[0], 10)
+
+    // Lifetime licences cover all versions; Standard only covers the major version
+    // they purchased for (currently v2). If the update crosses a major boundary and
+    // the user doesn't have a Lifetime licence, block the download and notify them.
+    const isEntitled = tier === 'lifetime' || updateMajor <= currentMajor
+
+    if (isEntitled) {
+      // Start the download and tell the UI an update is available
+      autoUpdater.downloadUpdate()
+      mainWindow?.webContents.send('update-available', {
+        version: info.version,
+        releaseNotes: info.releaseNotes,
+      })
+    } else {
+      // Standard-tier user hit a major-version wall — tell the UI to prompt an upgrade
+      mainWindow?.webContents.send('update-not-entitled', {
+        version: info.version,
+      })
+    }
   })
 
   autoUpdater.on('download-progress', (progress) => {

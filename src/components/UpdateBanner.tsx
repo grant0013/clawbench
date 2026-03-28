@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { api } from '../lib/ipc'
 
-type UpdateState = 'idle' | 'available' | 'downloading' | 'ready'
+type UpdateState = 'idle' | 'available' | 'downloading' | 'ready' | 'not-entitled'
+
+const PURCHASE_URL = 'https://purchase.openclawarcade.org'
 
 export default function UpdateBanner() {
   const [state, setState]     = useState<UpdateState>('idle')
@@ -22,7 +24,11 @@ export default function UpdateBanner() {
       setVersion(info.version)
       setState('ready')
     })
-    return () => { offAvailable(); offProgress(); offDownloaded() }
+    const offNotEntitled = api.onUpdateNotEntitled((info) => {
+      setVersion(info.version)
+      setState('not-entitled')
+    })
+    return () => { offAvailable(); offProgress(); offDownloaded(); offNotEntitled() }
   }, [])
 
   if (dismissed || state === 'idle') return null
@@ -94,7 +100,7 @@ export default function UpdateBanner() {
       `}</style>
       <div style={styles.banner}>
         <span style={styles.icon}>
-          {state === 'ready' ? '✅' : state === 'downloading' ? '⬇️' : '⚡'}
+          {state === 'ready' ? '✅' : state === 'downloading' ? '⬇️' : state === 'not-entitled' ? '🔒' : '⚡'}
         </span>
         <div style={styles.text}>
           {state === 'available' && (
@@ -115,10 +121,21 @@ export default function UpdateBanner() {
               <div style={styles.sub}>Restart ClawBench to apply the update</div>
             </>
           )}
+          {state === 'not-entitled' && (
+            <>
+              <div style={styles.title}>v{version} — Licence upgrade required</div>
+              <div style={styles.sub}>Your Standard licence covers v2.x only. Upgrade to Lifetime for all future versions.</div>
+            </>
+          )}
         </div>
         {state === 'ready' && (
           <button style={styles.btn} onClick={() => api.installUpdate()}>
             Restart & Install
+          </button>
+        )}
+        {state === 'not-entitled' && (
+          <button style={styles.btn} onClick={() => api.openExternal(PURCHASE_URL)}>
+            Buy Lifetime →
           </button>
         )}
         {state !== 'downloading' && (

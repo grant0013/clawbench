@@ -55,6 +55,7 @@ interface ElectronAPI {
   onUpdateAvailable: (cb: (info: { version: string }) => void) => () => void
   onUpdateProgress: (cb: (progress: { percent: number }) => void) => () => void
   onUpdateDownloaded: (cb: (info: { version: string }) => void) => () => void
+  onUpdateNotEntitled: (cb: (info: { version: string }) => void) => () => void
 }
 
 declare global {
@@ -131,6 +132,7 @@ export const api: ElectronAPI = window.electronAPI ?? {
   onUpdateAvailable: () => () => {},
   onUpdateProgress: () => () => {},
   onUpdateDownloaded: () => () => {},
+  onUpdateNotEntitled: () => () => {},
 }
 
 export { isDev }
