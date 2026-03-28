@@ -17,7 +17,7 @@
 
 ## Overview
 
-**ClawBench** is a desktop application built by **OpenClaw · Hark-Tech** that makes benchmarking large language models (LLMs) effortless. It automatically installs llama.cpp, detects your hardware, downloads models from HuggingFace, and runs professional-grade benchmarks — all from a clean, beginner-friendly interface.
+**ClawBench** is a desktop application built by **Hark-Tech** that makes benchmarking large language models (LLMs) effortless. It automatically installs llama.cpp, detects your hardware, downloads models from HuggingFace, and runs professional-grade benchmarks — all from a clean, beginner-friendly interface.
 
 Whether you're a developer comparing quantisation formats, a researcher profiling GPU performance, or simply someone who wants to know how fast a model runs on their machine, ClawBench gives you accurate, structured results with zero setup.
 
@@ -137,7 +137,7 @@ Double-click the `.bat` file at any time to start chatting with your model — n
 Premium features are unlocked with a **ClawBench licence key**.
 
 ### How to Purchase
-Contact OpenClaw · Hark-Tech to obtain a licence key:
+Contact Hark-Tech to obtain a licence key:
 
 - **Email:** [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
 - **Website:** [openclawarcade.org](https://openclawarcade.org)
