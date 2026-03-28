@@ -145,7 +145,7 @@ Premium features are unlocked with a **LLM Bench licence key**.
 ### How to Purchase
 Contact Hark-Tech to obtain a licence key:
 
-- **Email:** [contact@hark-tech.com](mailto:contact@hark-tech.com)
+- **Email:** [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
 - **Website:** [hark-tech.com](https://hark-tech.com) *(coming soon)*
 
 ### Activating Your Licence
@@ -248,7 +248,7 @@ LLM Bench does not collect, transmit, or store any personal data. All benchmark 
 For support, bug reports, or feature requests:
 
 - **GitHub Issues:** [github.com/grant0013/llm-bench/issues](https://github.com/grant0013/llm-bench/issues)
-- **Email:** [contact@hark-tech.com](mailto:contact@hark-tech.com)
+- **Email:** [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
 
 ---
 
