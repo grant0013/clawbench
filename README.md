@@ -134,13 +134,18 @@ Double-click the `.bat` file at any time to start chatting with your model — n
 
 ## Obtaining a Premium Licence
 
-Premium features are unlocked with a **ClawBench licence key**.
+Premium features are unlocked with a **ClawBench licence key** (format: `LLMB-XXXX-XXXX-XXXX-XXXX`).
 
-### How to Purchase
-Contact Hark-Tech to obtain a licence key:
+### Purchase Instantly Online
 
-- **Email:** [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
-- **Website:** [openclawarcade.org](https://openclawarcade.org)
+> **[purchase.openclawarcade.org](https://purchase.openclawarcade.org)** — £10 one-time payment
+
+1. Visit **[purchase.openclawarcade.org](https://purchase.openclawarcade.org)**
+2. Click **Buy Now** and complete the secure Stripe checkout
+3. Your licence key is displayed immediately on screen
+4. A copy is also **emailed to you automatically** — check your inbox
+
+The whole process takes under a minute. No account required.
 
 ### Activating Your Licence
 1. Open ClawBench
@@ -150,10 +155,14 @@ Contact Hark-Tech to obtain a licence key:
 5. Premium features unlock immediately — no restart required
 
 ### Licence Terms
+- One-time payment — no subscription, no renewal fees
 - One licence key is valid for **one machine** at a time
 - You may deactivate and reactivate your key to move between machines
-- Licences do not expire unless stated otherwise at time of purchase
-- Business/multi-seat licences available on request
+- Licences do not expire
+- Business/multi-seat licences available — contact [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
+
+### Lost Your Key?
+Your key is tied to your Stripe payment session. If you've lost it, email [hello@openclawarcade.org](mailto:hello@openclawarcade.org) with your payment confirmation and we'll resend it.
 
 ---
 
@@ -201,7 +210,7 @@ The packaged output will appear in the `release/` folder.
 ## Legal
 
 ### Copyright
-© 2025 **Hark-Tech**. All rights reserved.
+© 2026 **Hark-Tech**. All rights reserved.
 
 ClawBench is a proprietary software product created and owned by Hark-Tech. Unauthorised copying, redistribution, modification, or reverse engineering of this software is strictly prohibited.
 
