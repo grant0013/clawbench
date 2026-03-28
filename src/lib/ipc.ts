@@ -48,6 +48,13 @@ interface ElectronAPI {
 
   // Utilities
   openExternal: (url: string) => Promise<void>
+
+  // Auto-update
+  checkForUpdates: () => Promise<void>
+  installUpdate: () => Promise<void>
+  onUpdateAvailable: (cb: (info: { version: string }) => void) => () => void
+  onUpdateProgress: (cb: (progress: { percent: number }) => void) => () => void
+  onUpdateDownloaded: (cb: (info: { version: string }) => void) => () => void
 }
 
 declare global {
@@ -119,6 +126,11 @@ export const api: ElectronAPI = window.electronAPI ?? {
   getLicenseInfo: async () => mockLicense,
   deactivateLicense: async () => {},
   openExternal: async (url: string) => { window.open(url, '_blank') },
+  checkForUpdates: async () => {},
+  installUpdate: async () => {},
+  onUpdateAvailable: () => () => {},
+  onUpdateProgress: () => () => {},
+  onUpdateDownloaded: () => () => {},
 }
 
 export { isDev }

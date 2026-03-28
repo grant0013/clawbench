@@ -11,6 +11,7 @@ import SettingsPanel from './components/SettingsPanel'
 import HuggingFaceBrowser from './components/HuggingFaceBrowser'
 import HardwarePanel from './components/HardwarePanel'
 import SetupWizard from './components/SetupWizard'
+import UpdateBanner from './components/UpdateBanner'
 
 export default function App() {
   const [view, setView] = useState<AppView>('benchmark')
@@ -67,6 +68,7 @@ export default function App() {
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
+      <UpdateBanner />
       <Sidebar
         currentView={view}
         onNavigate={setView}

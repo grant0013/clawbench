@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain, dialog, shell } from 'electron'
+import { autoUpdater } from 'electron-updater'
 import path from 'path'
 import { pathToFileURL } from 'url'
 import { detectLlamaCpp } from './llamacpp/detector'
@@ -69,6 +70,7 @@ app.whenReady().then(() => {
   downloader = new ModelDownloader()
   createWindow()
   registerIpcHandlers()
+  setupAutoUpdater()
 })
 
 app.on('window-all-closed', () => {
@@ -255,6 +257,41 @@ function registerIpcHandlers() {
   ipcMain.handle('get-license-info', () => getLicenseInfo())
   ipcMain.handle('deactivate-license', () => deactivateLicense())
   ipcMain.handle('open-external', (_, url: string) => shell.openExternal(url))
+
+  // --- Auto-update ---
+  ipcMain.handle('check-for-updates', () => autoUpdater.checkForUpdates())
+  ipcMain.handle('install-update', () => autoUpdater.quitAndInstall())
+}
+
+function setupAutoUpdater() {
+  autoUpdater.autoDownload = true
+  autoUpdater.autoInstallOnAppQuit = true
+
+  // Check for updates 5 seconds after launch (give the window time to load)
+  setTimeout(() => autoUpdater.checkForUpdates(), 5000)
+
+  autoUpdater.on('update-available', (info) => {
+    mainWindow?.webContents.send('update-available', {
+      version: info.version,
+      releaseNotes: info.releaseNotes,
+    })
+  })
+
+  autoUpdater.on('download-progress', (progress) => {
+    mainWindow?.webContents.send('update-progress', {
+      percent: Math.round(progress.percent),
+      transferred: progress.transferred,
+      total: progress.total,
+    })
+  })
+
+  autoUpdater.on('update-downloaded', (info) => {
+    mainWindow?.webContents.send('update-downloaded', { version: info.version })
+  })
+
+  autoUpdater.on('error', (err) => {
+    console.error('Auto-update error:', err.message)
+  })
 }
 
 function resultsToCsv(results: any[]): string {

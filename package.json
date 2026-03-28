@@ -1,6 +1,6 @@
 {
   "name": "clawbench",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "ClawBench - AI Model Benchmarking by OpenClaw · Hark-Tech",
   "main": "dist-electron/main.js",
   "scripts": {
@@ -16,6 +16,11 @@
     "appId": "com.openclaw.clawbench",
     "productName": "ClawBench",
     "icon": "build/icon.ico",
+    "publish": {
+      "provider": "github",
+      "owner": "grant0013",
+      "repo": "clawbench"
+    },
     "directories": {
       "output": "release"
     },
@@ -69,6 +74,7 @@
   "license": "ISC",
   "dependencies": {
     "better-sqlite3": "^12.8.0",
+    "electron-updater": "^6.8.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "recharts": "^3.8.1"

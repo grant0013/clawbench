@@ -61,4 +61,23 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   // Utilities
   openExternal: (url: string) => ipcRenderer.invoke('open-external', url),
+
+  // Auto-update
+  checkForUpdates: () => ipcRenderer.invoke('check-for-updates'),
+  installUpdate: () => ipcRenderer.invoke('install-update'),
+  onUpdateAvailable: (callback: (info: any) => void) => {
+    const handler = (_: any, info: any) => callback(info)
+    ipcRenderer.on('update-available', handler)
+    return () => ipcRenderer.removeListener('update-available', handler)
+  },
+  onUpdateProgress: (callback: (progress: any) => void) => {
+    const handler = (_: any, progress: any) => callback(progress)
+    ipcRenderer.on('update-progress', handler)
+    return () => ipcRenderer.removeListener('update-progress', handler)
+  },
+  onUpdateDownloaded: (callback: (info: any) => void) => {
+    const handler = (_: any, info: any) => callback(info)
+    ipcRenderer.on('update-downloaded', handler)
+    return () => ipcRenderer.removeListener('update-downloaded', handler)
+  },
 })
