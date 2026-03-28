@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+
+    <!-- Background gradient: deep navy top-left to near-black bottom-right -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1e2d4a"/>
+      <stop offset="100%" stop-color="#090e1a"/>
+    </linearGradient>
+
+    <!-- Lightning bolt: light violet top → deep indigo bottom -->
+    <linearGradient id="boltGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%"   stop-color="#c4b5fd"/>
+      <stop offset="45%"  stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+
+    <!-- Bars: indigo to violet -->
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+
+    <!-- Bolt glow -->
+    <filter id="boltGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft glow for bars -->
+    <filter id="barGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Clip to rounded square -->
+    <clipPath id="roundClip">
+      <rect width="512" height="512" rx="88" ry="88"/>
+    </clipPath>
+
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="512" height="512" rx="88" ry="88" fill="url(#bgGrad)"/>
+
+  <!-- Subtle centre radial bloom -->
+  <radialGradient id="bloom" cx="50%" cy="46%" r="52%">
+    <stop offset="0%"   stop-color="#6366f1" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="512" height="512" rx="88" fill="url(#bloom)"/>
+
+  <!-- ── Benchmark bars (behind bolt, subtle) ── -->
+  <g clip-path="url(#roundClip)" filter="url(#barGlow)">
+    <!-- Bar 1 (shortest, left) -->
+    <rect x="72"  y="388" width="54" height="90"  rx="9" fill="url(#barGrad)" opacity="0.28"/>
+    <!-- Bar 2 -->
+    <rect x="140" y="338" width="54" height="140" rx="9" fill="url(#barGrad)" opacity="0.32"/>
+    <!-- Bar 3 (tallest, centre) -->
+    <rect x="208" y="278" width="54" height="200" rx="9" fill="url(#barGrad)" opacity="0.36"/>
+    <!-- Bar 4 -->
+    <rect x="276" y="308" width="54" height="170" rx="9" fill="url(#barGrad)" opacity="0.32"/>
+    <!-- Bar 5 (right) -->
+    <rect x="344" y="348" width="54" height="130" rx="9" fill="url(#barGrad)" opacity="0.28"/>
+    <!-- Baseline -->
+    <rect x="60" y="476" width="390" height="4" rx="2" fill="#6366f1" opacity="0.45"/>
+  </g>
+
+  <!-- ── Lightning bolt (dominant) ── -->
+  <!--
+    Shape:  chunky ⚡ pointing bottom-left
+    Top tip   → (292, 52)
+    Left edge → (148, 278)   long diagonal going down-left
+    Notch in  → (238, 278)   step right at the waist
+    Lower tip → (218, 462)   point going down
+    Right edge→ (364, 236)   long diagonal going up-right
+    Notch in  → (274, 236)   step left at the waist
+    close back to (292, 52)
+  -->
+  <path
+    d="M 292,52
+       L 148,278
+       L 238,278
+       L 218,462
+       L 364,236
+       L 274,236
+       Z"
+    fill="url(#boltGrad)"
+    filter="url(#boltGlow)"
+  />
+
+  <!-- Thin inner highlight on bolt (top-left face) — adds depth -->
+  <path
+    d="M 278,68
+       L 164,268
+       L 228,268
+       Z"
+    fill="white"
+    opacity="0.07"
+  />
+
+  <!-- ── Border ring (subtle indigo outline) ── -->
+  <rect width="512" height="512" rx="88" fill="none"
+        stroke="#6366f1" stroke-width="2" opacity="0.4"/>
+
+</svg>

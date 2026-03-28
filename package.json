@@ -1,6 +1,6 @@
 {
   "name": "clawbench",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "ClawBench - AI Model Benchmarking by OpenClaw · Hark-Tech",
   "main": "dist-electron/main.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "build": {
     "appId": "com.openclaw.clawbench",
     "productName": "ClawBench",
+    "icon": "build/icon.ico",
     "directories": {
       "output": "release"
     },
@@ -25,7 +26,12 @@
     ],
     "win": {
       "target": [
-        { "target": "nsis", "arch": ["x64"] }
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "artifactName": "${productName}-${version}-Setup.${ext}",
       "signAndEditExecutable": false
@@ -38,16 +44,27 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "ClawBench",
-"deleteAppDataOnUninstall": false
+      "deleteAppDataOnUninstall": false
     },
     "forceCodeSigning": false,
-    "mac": { "target": "dmg" },
-    "linux": { "target": "AppImage" },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    },
     "extraMetadata": {
       "main": "dist-electron/main.js"
     }
   },
-  "keywords": ["clawbench", "openclaw", "llm", "benchmark", "llama.cpp", "ai"],
+  "keywords": [
+    "clawbench",
+    "openclaw",
+    "llm",
+    "benchmark",
+    "llama.cpp",
+    "ai"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -57,6 +74,7 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
+    "@electron/asar": "^4.1.2",
     "@tailwindcss/vite": "^4.2.2",
     "@types/better-sqlite3": "^7.6.13",
     "@types/react": "^19.2.14",
@@ -65,7 +83,10 @@
     "concurrently": "^9.2.1",
     "electron": "^41.1.0",
     "electron-builder": "^26.8.1",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2",
+    "to-ico": "^1.1.5",
     "typescript": "^6.0.2",
     "vite": "^8.0.3",
     "wait-on": "^9.0.4"
