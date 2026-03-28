@@ -64,10 +64,10 @@ export default function SetupWizard({ onComplete }: Props) {
           <span style={{ fontSize: 40 }}>⚡</span>
         </div>
         <h1 style={{ color: '#f1f5f9', fontSize: 24, fontWeight: 700, margin: '0 0 8px' }}>
-          Welcome to LLM Bench
+          Welcome to ClawBench
         </h1>
         <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 32px', lineHeight: 1.6 }}>
-          To get started, LLM Bench needs to install{' '}
+          To get started, ClawBench needs to install{' '}
           <strong style={{ color: '#e2e8f0' }}>llama.cpp</strong> — the engine that runs your models.
           This is a one-time setup and takes about a minute.
         </p>

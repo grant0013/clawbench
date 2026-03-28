@@ -1,7 +1,7 @@
 {
-  "name": "llm-bench",
+  "name": "clawbench",
   "version": "2.0.0",
-  "description": "Automatic LLM Benchmarking Tool for llama.cpp",
+  "description": "ClawBench - AI Model Benchmarking by OpenClaw · Hark-Tech",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
@@ -13,8 +13,8 @@
     "electron:preview": "npm run build && electron ."
   },
   "build": {
-    "appId": "com.llmbench.app",
-    "productName": "LLM Bench",
+    "appId": "com.openclaw.clawbench",
+    "productName": "ClawBench",
     "directories": {
       "output": "release"
     },
@@ -37,7 +37,7 @@
       "allowElevation": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "LLM Bench",
+      "shortcutName": "ClawBench",
 "deleteAppDataOnUninstall": false
     },
     "forceCodeSigning": false,
@@ -47,7 +47,7 @@
       "main": "dist-electron/main.js"
     }
   },
-  "keywords": ["llm", "benchmark", "llama.cpp"],
+  "keywords": ["clawbench", "openclaw", "llm", "benchmark", "llama.cpp", "ai"],
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -1,12 +1,13 @@
-# LLM Bench
+# ClawBench
 
 <div align="center">
 
-![LLM Bench](https://img.shields.io/badge/LLM%20Bench-v2.0.0-4f46e5?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-0f172a?style=for-the-badge)
+![ClawBench](https://img.shields.io/badge/ClawBench-v2.0.0-4f46e5?style=for-the-badge)
+![OpenClaw](https://img.shields.io/badge/by-OpenClaw%20%C2%B7%20Hark--Tech-0f172a?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-334155?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
-**Automatic LLM Benchmarking Tool — powered by llama.cpp**
+**AI Model Benchmarking — powered by llama.cpp**
 
 *Benchmark any GGUF model on your hardware in minutes. No command line required.*
 
@@ -16,9 +17,9 @@
 
 ## Overview
 
-**LLM Bench** is a desktop application built by **Hark-Tech** that makes benchmarking large language models (LLMs) effortless. It automatically installs llama.cpp, detects your hardware, downloads models from HuggingFace, and runs professional-grade benchmarks — all from a clean, beginner-friendly interface.
+**ClawBench** is a desktop application built by **OpenClaw · Hark-Tech** that makes benchmarking large language models (LLMs) effortless. It automatically installs llama.cpp, detects your hardware, downloads models from HuggingFace, and runs professional-grade benchmarks — all from a clean, beginner-friendly interface.
 
-Whether you're a developer comparing quantisation formats, a researcher profiling GPU performance, or simply someone who wants to know how fast a model runs on their machine, LLM Bench gives you accurate, structured results with zero setup.
+Whether you're a developer comparing quantisation formats, a researcher profiling GPU performance, or simply someone who wants to know how fast a model runs on their machine, ClawBench gives you accurate, structured results with zero setup.
 
 ---
 
@@ -33,7 +34,7 @@ Whether you're a developer comparing quantisation formats, a researcher profilin
 | **History** | Browse and export past benchmark runs |
 | **Manual Configuration** | Set llama.cpp path, GPU layers, threads manually |
 | **Auto-Detect llama.cpp** | Scans common install locations for existing llama.cpp builds |
-| **Launcher Script** | Generates a one-click `.bat` script to run your model with optimal settings |
+| **Claw Chat Launcher** | Generates a one-click `.bat` script to run your model with optimal settings |
 
 ### Premium Tier
 | Feature | Description |
@@ -50,12 +51,6 @@ Whether you're a developer comparing quantisation formats, a researcher profilin
 
 ---
 
-## Screenshots
-
-> *Coming soon*
-
----
-
 ## Installation
 
 ### Requirements
@@ -68,20 +63,19 @@ Download the latest installer from the [Releases](https://github.com/grant0013/l
 
 | File | Description |
 |------|-------------|
-| `LLM Bench-2.0.0-Setup.exe` | Windows installer (recommended) |
-| `LLM Bench-2.0.0.exe` | Windows portable (no install required) |
+| `ClawBench-2.0.0-Setup.exe` | Windows installer (recommended) |
 
-Run the installer and follow the on-screen instructions. On first launch, LLM Bench will automatically download and install llama.cpp for your hardware.
+Run the installer, choose your install location, and follow the on-screen steps. On first launch, ClawBench will automatically download and install llama.cpp for your hardware.
 
 ---
 
 ## Quick Start
 
-1. **Launch LLM Bench** — the Setup Wizard will automatically detect your GPU and download the correct llama.cpp build
+1. **Launch ClawBench** — the Setup Wizard will automatically detect your GPU and download the correct llama.cpp build
 2. **Select a model** — browse for a local `.gguf` file, or use the HuggingFace Browser (Premium) to download one
 3. **Configure settings** — use Auto-Optimise (Premium) or set GPU layers and threads manually
 4. **Run benchmark** — click **Run Benchmark** and watch results appear in real time
-5. **Generate launcher** — click **Generate Launcher Script** to create a one-click chat script for your Desktop
+5. **Generate launcher** — click **Generate Launcher Script** to create a one-click **Claw Chat** script for your Desktop
 
 ---
 
@@ -114,13 +108,13 @@ Automatically benchmarks all quant variants (Q4_K_M, Q5_K_M, Q6_K, Q8_0, etc.) i
 
 ---
 
-## Launcher Script
+## Claw Chat Launcher
 
 After running a Token Speed benchmark, click **Generate Launcher Script**. This creates a `Run ModelName.bat` file on your Desktop that:
 
 - Displays your model name, GPU config, and measured speeds
 - Launches `llama-cli` with your optimised settings
-- Opens an interactive chat session — just type and press Enter
+- Opens an interactive **Claw Chat** session — just type and press Enter
 - Handles errors and waits before closing
 
 Double-click the `.bat` file at any time to start chatting with your model — no terminal knowledge required.
@@ -140,16 +134,16 @@ Double-click the `.bat` file at any time to start chatting with your model — n
 
 ## Obtaining a Premium Licence
 
-Premium features are unlocked with a **LLM Bench licence key**.
+Premium features are unlocked with a **ClawBench licence key**.
 
 ### How to Purchase
-Contact Hark-Tech to obtain a licence key:
+Contact OpenClaw · Hark-Tech to obtain a licence key:
 
 - **Email:** [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
-- **Website:** [hark-tech.com](https://hark-tech.com) *(coming soon)*
+- **Website:** [openclawarcade.org](https://openclawarcade.org)
 
 ### Activating Your Licence
-1. Open LLM Bench
+1. Open ClawBench
 2. Go to **Settings**
 3. In the **Licence** section, enter your key (format: `LLMB-XXXX-XXXX-XXXX-XXXX`)
 4. Click **Activate**
@@ -207,25 +201,25 @@ The packaged output will appear in the `release/` folder.
 ## Legal
 
 ### Copyright
-© 2025 **Hark-Tech**. All rights reserved.
+© 2025 **Hark-Tech / OpenClaw**. All rights reserved.
 
-LLM Bench is a proprietary software product created and owned by Hark-Tech. Unauthorised copying, redistribution, modification, or reverse engineering of this software is strictly prohibited.
+ClawBench is a proprietary software product created and owned by Hark-Tech / OpenClaw. Unauthorised copying, redistribution, modification, or reverse engineering of this software is strictly prohibited.
 
 ### Licence
-This software is **not open source**. The source code is published on GitHub for transparency and issue tracking purposes only. You may not use, copy, modify, or distribute this software or its source code without explicit written permission from Hark-Tech.
+This software is **not open source**. The source code is published on GitHub for transparency and issue tracking purposes only. You may not use, copy, modify, or distribute this software or its source code without explicit written permission from Hark-Tech / OpenClaw.
 
 **You are permitted to:**
-- Download and use LLM Bench on your own devices
+- Download and use ClawBench on your own devices
 - Report bugs and submit feature requests via GitHub Issues
 
 **You are not permitted to:**
-- Redistribute or resell LLM Bench
+- Redistribute or resell ClawBench
 - Modify or create derivative works
 - Reverse engineer the licence system
 - Use any portion of the source code in other projects
 
 ### Third-Party Software
-LLM Bench uses the following open-source components, each under their respective licences:
+ClawBench uses the following open-source components, each under their respective licences:
 
 | Software | Licence |
 |----------|---------|
@@ -236,10 +230,10 @@ LLM Bench uses the following open-source components, each under their respective
 | [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) | MIT |
 
 ### Disclaimer
-LLM Bench is provided "as is" without warranty of any kind. Hark-Tech is not liable for any damage to hardware, data loss, or any other issues arising from the use of this software. Benchmark results are indicative and may vary based on system configuration, background processes, and thermal conditions.
+ClawBench is provided "as is" without warranty of any kind. Hark-Tech / OpenClaw is not liable for any damage to hardware, data loss, or any other issues arising from the use of this software. Benchmark results are indicative and may vary based on system configuration, background processes, and thermal conditions.
 
 ### Privacy
-LLM Bench does not collect, transmit, or store any personal data. All benchmark results and settings are stored locally on your machine. Licence key validation communicates with Hark-Tech servers only to verify key authenticity — no personal information is sent.
+ClawBench does not collect, transmit, or store any personal data. All benchmark results and settings are stored locally on your machine. Licence key validation communicates with Hark-Tech / OpenClaw servers only to verify key authenticity — no personal information is sent.
 
 ---
 
@@ -254,6 +248,6 @@ For support, bug reports, or feature requests:
 
 <div align="center">
 
-Made with ❤️ by **Hark-Tech**
+Made with ❤️ by **OpenClaw · Hark-Tech**
 
 </div>

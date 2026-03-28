@@ -19,7 +19,7 @@ function httpsGet(url: string): Promise<{ body: string; finalUrl: string }> {
     function doGet(currentUrl: string, redirects = 0) {
       if (redirects > 5) return reject(new Error('Too many redirects'))
       const mod = currentUrl.startsWith('https') ? https : http
-      mod.get(currentUrl, { headers: { 'User-Agent': 'llm-bench/1.0' } }, (res) => {
+      mod.get(currentUrl, { headers: { 'User-Agent': 'clawbench/2.0' } }, (res) => {
         if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
           return doGet(res.headers.location, redirects + 1)
         }
@@ -89,7 +89,7 @@ function downloadFile(url: string, destPath: string, onProgress: (pct: number, m
     function doDownload(currentUrl: string, redirects = 0) {
       if (redirects > 5) return reject(new Error('Too many redirects'))
       const mod = currentUrl.startsWith('https') ? https : http
-      mod.get(currentUrl, { headers: { 'User-Agent': 'llm-bench/1.0' } }, (res) => {
+      mod.get(currentUrl, { headers: { 'User-Agent': 'clawbench/2.0' } }, (res) => {
         if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
           return doDownload(res.headers.location, redirects + 1)
         }

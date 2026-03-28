@@ -32,10 +32,10 @@ export default function Sidebar({ currentView, onNavigate, isRunning, isPremium 
         marginBottom: 8,
       }}>
         <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--accent)' }}>
-          LLM Bench
+          ClawBench
         </h1>
         <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>
-          llama.cpp Benchmarking
+          by OpenClaw · Hark-Tech
         </p>
       </div>
 

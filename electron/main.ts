@@ -213,11 +213,11 @@ function registerIpcHandlers() {
 
     const script = [
       `@echo off`,
-      `title LLM Chat - ${modelName}`,
+      `title Claw Chat - ${modelName}`,
       `color 0A`,
       `echo.`,
       `echo  ================================================`,
-      `echo   LLM Chat - Powered by LLM Bench`,
+      `echo   Claw Chat - Powered by ClawBench`,
       `echo  ================================================`,
       `echo.`,
       `echo   Model  : ${modelName}`,
