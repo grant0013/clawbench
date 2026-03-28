@@ -35,7 +35,7 @@ export default function Sidebar({ currentView, onNavigate, isRunning, isPremium 
           ClawBench
         </h1>
         <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>
-          by OpenClaw · Hark-Tech
+          by Hark-Tech
         </p>
       </div>
 

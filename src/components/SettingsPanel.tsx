@@ -140,7 +140,7 @@ export default function SettingsPanel({ settings, onUpdate, onDetect, onReinstal
       }}>
         <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>ClawBench v2.0.0</div>
         <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>
-          by OpenClaw · Hark-Tech
+          by Hark-Tech
           {isPremium && <span style={{ color: 'var(--success)', marginLeft: 8 }}>Premium</span>}
         </div>
       </section>

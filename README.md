@@ -3,7 +3,7 @@
 <div align="center">
 
 ![ClawBench](https://img.shields.io/badge/ClawBench-v2.0.0-4f46e5?style=for-the-badge)
-![OpenClaw](https://img.shields.io/badge/by-OpenClaw%20%C2%B7%20Hark--Tech-0f172a?style=for-the-badge)
+![Hark-Tech](https://img.shields.io/badge/by-Hark--Tech-0f172a?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-334155?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
@@ -59,7 +59,7 @@ Whether you're a developer comparing quantisation formats, a researcher profilin
 - 8 GB RAM minimum, 16 GB recommended
 
 ### Download
-Download the latest installer from the [Releases](https://github.com/grant0013/llm-bench/releases) page:
+Download the latest installer from the [Releases](https://github.com/grant0013/clawbench/releases) page:
 
 | File | Description |
 |------|-------------|
@@ -167,8 +167,8 @@ Contact OpenClaw · Hark-Tech to obtain a licence key:
 
 ```bash
 # Clone the repository
-git clone https://github.com/grant0013/llm-bench.git
-cd llm-bench
+git clone https://github.com/grant0013/clawbench.git
+cd clawbench
 
 # Install dependencies
 npm install
@@ -201,12 +201,12 @@ The packaged output will appear in the `release/` folder.
 ## Legal
 
 ### Copyright
-© 2025 **Hark-Tech / OpenClaw**. All rights reserved.
+© 2025 **Hark-Tech**. All rights reserved.
 
-ClawBench is a proprietary software product created and owned by Hark-Tech / OpenClaw. Unauthorised copying, redistribution, modification, or reverse engineering of this software is strictly prohibited.
+ClawBench is a proprietary software product created and owned by Hark-Tech. Unauthorised copying, redistribution, modification, or reverse engineering of this software is strictly prohibited.
 
 ### Licence
-This software is **not open source**. The source code is published on GitHub for transparency and issue tracking purposes only. You may not use, copy, modify, or distribute this software or its source code without explicit written permission from Hark-Tech / OpenClaw.
+This software is **not open source**. The source code is published on GitHub for transparency and issue tracking purposes only. You may not use, copy, modify, or distribute this software or its source code without explicit written permission from Hark-Tech.
 
 **You are permitted to:**
 - Download and use ClawBench on your own devices
@@ -230,10 +230,10 @@ ClawBench uses the following open-source components, each under their respective
 | [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) | MIT |
 
 ### Disclaimer
-ClawBench is provided "as is" without warranty of any kind. Hark-Tech / OpenClaw is not liable for any damage to hardware, data loss, or any other issues arising from the use of this software. Benchmark results are indicative and may vary based on system configuration, background processes, and thermal conditions.
+ClawBench is provided "as is" without warranty of any kind. Hark-Tech is not liable for any damage to hardware, data loss, or any other issues arising from the use of this software. Benchmark results are indicative and may vary based on system configuration, background processes, and thermal conditions.
 
 ### Privacy
-ClawBench does not collect, transmit, or store any personal data. All benchmark results and settings are stored locally on your machine. Licence key validation communicates with Hark-Tech / OpenClaw servers only to verify key authenticity — no personal information is sent.
+ClawBench does not collect, transmit, or store any personal data. All benchmark results and settings are stored locally on your machine. Licence key validation communicates with Hark-Tech servers only to verify key authenticity — no personal information is sent.
 
 ---
 
@@ -241,13 +241,13 @@ ClawBench does not collect, transmit, or store any personal data. All benchmark 
 
 For support, bug reports, or feature requests:
 
-- **GitHub Issues:** [github.com/grant0013/llm-bench/issues](https://github.com/grant0013/llm-bench/issues)
+- **GitHub Issues:** [github.com/grant0013/clawbench/issues](https://github.com/grant0013/clawbench/issues)
 - **Email:** [hello@openclawarcade.org](mailto:hello@openclawarcade.org)
 
 ---
 
 <div align="center">
 
-Made with ❤️ by **OpenClaw · Hark-Tech**
+Made with ❤️ by **Hark-Tech**
 
 </div>
