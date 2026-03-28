@@ -59,13 +59,13 @@ Whether you're a developer comparing quantisation formats, a researcher profilin
 - 8 GB RAM minimum, 16 GB recommended
 
 ### Download
-Download the latest installer from the [Releases](https://github.com/grant0013/clawbench/releases) page:
+Download the latest installer from the [Releases](https://github.com/grant0013/clawbench/releases/latest) page:
 
 | File | Description |
 |------|-------------|
-| `ClawBench-2.0.0-Setup.exe` | Windows installer (recommended) |
+| `ClawBench-2.0.2-Setup.exe` | Windows installer (recommended) |
 
-Run the installer, choose your install location, and follow the on-screen steps. On first launch, ClawBench will automatically download and install llama.cpp for your hardware.
+Run the installer, choose your install location, and follow the on-screen steps. If you have a previous version installed the installer will detect it and upgrade cleanly — your settings and licence key are preserved automatically. On first launch, ClawBench will download and install llama.cpp for your hardware.
 
 ---
 
@@ -250,7 +250,28 @@ ClawBench uses the following open-source components, each under their respective
 ClawBench is provided "as is" without warranty of any kind. Hark-Tech is not liable for any damage to hardware, data loss, or any other issues arising from the use of this software. Benchmark results are indicative and may vary based on system configuration, background processes, and thermal conditions.
 
 ### Privacy
-ClawBench does not collect, transmit, or store any personal data. All benchmark results and settings are stored locally on your machine. Licence key validation communicates with Hark-Tech servers only to verify key authenticity — no personal information is sent.
+ClawBench does not collect, transmit, or store any personal data. All benchmark results, settings, and licence keys are stored locally on your machine in `%APPDATA%\ClawBench\`. Licence key validation is performed entirely offline — no data is sent to any server.
+
+---
+
+## Changelog
+
+### v2.0.2 — 2026-03-28
+- **Two-tier licensing** — Standard (£10, v2.x) and Lifetime (£25, all versions)
+- **Licence persistence** — key stored in `%APPDATA%\ClawBench\` and survives all future updates automatically
+- **In-app purchase link** — ⚡ Buy Premium button in Settings opens the purchase page directly
+- **Fix** — licence key validation now correctly matches the purchase server algorithm
+- Tier badge displayed in Settings (Standard v2.x / Lifetime)
+
+### v2.0.1 — 2026-03-28
+- In-app purchase link added to Licence panel in Settings
+- Minor version bump
+
+### v2.0.0 — 2026-03-27
+- Initial public release under the ClawBench name
+- Full Premium feature set: hardware detection, auto-optimise, HuggingFace browser, auto-install llama.cpp, advanced benchmarks
+- Stripe-powered purchase page at purchase.openclawarcade.org
+- Automated licence key delivery via email
 
 ---
 
